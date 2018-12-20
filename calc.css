@@ -1,0 +1,17 @@
+#addition{
+  font-size: 13px;
+}
+table {
+  border-collapse: collapse;
+}
+table, th, td{
+  border: 1px solid black;
+}
+td {
+  width:5px;
+  align: center;
+}
+
+tr {
+  height:60px;
+}
