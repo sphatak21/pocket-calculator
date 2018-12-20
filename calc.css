@@ -3,15 +3,16 @@
 }
 table {
   border-collapse: collapse;
+  width:40%;
 }
 table, th, td{
   border: 1px solid black;
 }
 td {
-  width:5px;
-  align: center;
+  width:10%;
+  font-size:20px;
 }
 
 tr {
-  height:60px;
+  height:200px;
 }
