@@ -1,10 +1,12 @@
 var expression="";
 var symbol=false;
+inputLength=9;
 function fourfunction(operation) {
   if(operation == '+' && symbol==true) {
     expression+="+";
     document.getElementById('addition').innerHTML=expression;
     symbol=false;
+    inputLength++;
   }
   if(operation=='x' && symbol==true){
     expression+='*';
@@ -21,6 +23,9 @@ function fourfunction(operation) {
     expression+='-';
     document.getElementById('addition').innerHTML=expression;
     symbol=false;
+  }
+  if(operation == '%' && symbol==true){
+    document.getElementById('addition').innerHTML=expression;
   }
   if (operation=='.' && symbol==true){
     expression+='.';
@@ -92,27 +97,29 @@ function AC(){
 }
 
 function equals(operation){
+  let finalExpression=eval(expression);
   if (operation== '='){
-    if (eval(expression)==Infinity){
+    if (finalExpression==Infinity){
       document.getElementById('addition').innerHTML="Error";
     }
-    else if(eval(expression)>=1000000000){
-      let exponent=eval(expression).toString().length-1;
-      document.getElementById('addition').innerHTML=eval(expression)/(10**(exponent))+'e'+exponent;
+    else if(finalExpression>=1000000000){
+      let exponent=finalExpression.toString().length-1;
+      document.getElementById('addition').innerHTML=finalExpression/(10**(exponent))+'e'+exponent;
 
     }
     else{
-      document.getElementById('addition').innerHTML=eval(expression);
+      document.getElementById('addition').innerHTML=finalExpression.toLocaleString();
     }
 
   }
     try {
-      eval(expression)
+      finalExpression
     }
     catch(err) {
       document.getElementById('addition').innerHTML="Error";
     }
-    ans=eval(expression);
-    expression=''
-    console.log(ans);
+    ans=finalExpression;
+    expression='';
+    finalExpression='';
+    console.log(eval(ans));
 }
