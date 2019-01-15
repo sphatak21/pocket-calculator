@@ -1,6 +1,8 @@
 var expression="";
 var symbol=false;
-inputLength=9;
+var inputLength=9;
+var decimalZero=false;
+var decimalPoint=true;
 function fourfunction(operation) {
   if(operation == '+' && symbol==true) {
     expression+="+";
@@ -28,13 +30,20 @@ function fourfunction(operation) {
     document.getElementById('addition').innerHTML=expression;
   }
   if (operation=='.' && symbol==true){
-    expression+='.';
+    expression+='.'+'0';
     document.getElementById('addition').innerHTML=expression;
-    symbol=false;
+    symbol=true;
+    decimalZero=true;
+    decimalPoint=true;
   }
 }
 function numbers(operation){
-
+  if(decimalZero==true){
+    let r=expression.split('')
+    r.pop();
+    expression=r.join('');
+    decimalZero=false;
+  }
   if (operation=='0'){
     expression+='0';
     document.getElementById('addition').innerHTML=expression;
@@ -89,7 +98,7 @@ function numbers(operation){
   expression+='ans';
   document.getElementById('addition').innerHTML='ans';
   symbol=true;
-}
+  }
 }
 function AC(){
   expression='';
