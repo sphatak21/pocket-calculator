@@ -3,6 +3,7 @@ var symbol=false;
 var inputLength=9;
 var decimalZero=false;
 var decimalPoint=true;
+var decimalNum=false;
 function fourfunction(operation) {
   if(operation == '+' && symbol==true) {
     expression+="+";
@@ -27,15 +28,19 @@ function fourfunction(operation) {
     symbol=false;
   }
   if(operation == '%' && symbol==true){
+    expression+='*.01'
     document.getElementById('addition').innerHTML=expression;
+
   }
-  if (operation=='.' && symbol==true){
+  if (operation=='.' && symbol==true && decimalNum==false){
     expression+='.'+'0';
     document.getElementById('addition').innerHTML=expression;
     symbol=true;
     decimalZero=true;
     decimalPoint=true;
+    decimalNum=true;
   }
+
 }
 function numbers(operation){
   if(decimalZero==true){
@@ -46,63 +51,65 @@ function numbers(operation){
   }
   if (operation=='0'){
     expression+='0';
-    document.getElementById('addition').innerHTML=expression;
+    document.getElementById('addition').innerHTML=expression.toLocaleString();
     symbol=true;
   }
   if (operation=='1'){
     expression+='1';
-    document.getElementById('addition').innerHTML=expression;
+    document.getElementById('addition').innerHTML=expression.toLocaleString();
     symbol=true;
   }
   if (operation=='2'){
     expression+='2';
-    document.getElementById('addition').innerHTML=expression;
+    document.getElementById('addition').innerHTML=expression.toLocaleString();
     symbol=true;
   }
   if (operation=='3'){
     expression+='3';
-    document.getElementById('addition').innerHTML=expression;
+    document.getElementById('addition').innerHTML=expression.toLocaleString();
     symbol=true;
   }
   if (operation=='4'){
     expression+='4';
-    document.getElementById('addition').innerHTML=expression;
+    document.getElementById('addition').innerHTML=expression.toLocaleString();
     symbol=true;
   }
   if (operation=='5'){
     expression+='5';
-    document.getElementById('addition').innerHTML=expression;
+    document.getElementById('addition').innerHTML=expression.toLocaleString();
     symbol=true;
   }
   if (operation=='6'){
     expression+='6';
-    document.getElementById('addition').innerHTML=expression;
+    document.getElementById('addition').innerHTML=expression.toLocaleString();
     symbol=true;
   }
   if (operation=='7'){
     expression+='7';
-    document.getElementById('addition').innerHTML=expression;
+    document.getElementById('addition').innerHTML=expression.toLocaleString();
     symbol=true;
   }
   if (operation=='8'){
     expression+='8';
-    document.getElementById('addition').innerHTML=expression;
+    document.getElementById('addition').innerHTML=expression.toLocaleString();
     symbol=true;
   }
   if (operation=='9'){
     expression+='9';
-    document.getElementById('addition').innerHTML=expression;
+    document.getElementById('addition').innerHTML=expression.toLocaleString();
     symbol=true;
   }
   if (operation=='ans'){
   expression+='ans';
-  document.getElementById('addition').innerHTML='ans';
+  document.getElementById('addition').innerHTML=expression.toLocaleString();
   symbol=true;
+  decimalNum=false;
   }
 }
 function AC(){
   expression='';
-  document.getElementById('addition').innerHTML=expression;
+  symbol=false;
+  document.getElementById('addition').innerHTML=expression.toLocaleString();
 }
 
 function equals(operation){
@@ -131,4 +138,5 @@ function equals(operation){
     expression='';
     finalExpression='';
     console.log(eval(ans));
+    decimalNum=false;
 }
