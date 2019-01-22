@@ -87,32 +87,39 @@ function numbers(operation){
   if(operation=='del') {
 	  let z=displayExpression.split('');
 	  let r=expression.split('');
-	  if(Number.isInteger(Number(z[z.length-1]))||z[z.length-1]=='x'||z[z.length-1]=='/'||z[z.length-1]||z[z.length-1]=='-'||z[z.length-1]=='+'||z[z.length-1]=='%'){
-	  	temp=r.pop();
-	  }
+
 	  if(z[z.length-1]=='^'){
-	    temp=z.pop();
-	    temp+=r.pop();
-	    temp+=r.pop();
-	  }
+	    z.pop();
+	    r.pop();
+	    r.pop();
+	  }else{
+      let temp=z.pop();
+      let temp2=r.pop();
+      if(Number.isInteger(Number(temp))){
+        symbol=false;
+      }else{
+        symbol=true;
+      }
+    }
+    numlength--;
 	  expression=r.join('');
 	  displayExpression=z.join('')
 	  document.getElementById('addition').innerHTML=displayExpression;
-	  if(temp=='*'||temp.length-1=='-'||temp== '/' ||temp=='%'||temp=='**'||temp=='+'){
-		symbol=true;
-	  }
-	  if(displayExpression[displayExpression.length-1]=='x'||displayExpression[displayExpression.length-1]=='-'||displayExpression[displayExpression.length-1]== '/' ||displayExpression[displayExpression.length-1]=='%'||displayExpression[displayExpression.length-1]=='^'||displayExpression[displayExpression.length-1]=='+'){
-		symbol=false;
-	  }
+	  //if(temp=='*'||temp.length-1=='-'||temp== '/' ||temp=='%'||temp=='**'||temp=='+'){
+		//symbol=true;
+	  //}
+	  //if(displayExpression[displayExpression.length-1]=='x'||displayExpression[displayExpression.length-1]=='-'||displayExpression[displayExpression.length-1]== '/' ||displayExpression[displayExpression.length-1]=='%'||displayExpression[displayExpression.length-1]=='^'||displayExpression[displayExpression.length-1]=='+'){
+		//symbol=false;
+	  //}
   }
   if (operation=="negation"){
 	  let z=displayExpression.split('');
 	  let r=expression.split('');
-	  
+
 	  let x=true;
 	  let y=true;
-	  for(let i=displayExpression.length-1;i>=0;i--){    
-		  if((displayExpression[i]=='x'||displayExpression[i]=='/'||displayExpression[i]=='+'||displayExpression=='-'||displayExpression[i]=='^') && x==true){  
+	  for(let i=displayExpression.length-1;i>=0;i--){
+		  if((displayExpression[i]=='x'||displayExpression[i]=='/'||displayExpression[i]=='+'||displayExpression=='-'||displayExpression[i]=='^') && x==true){
 			  x=false;
 			  var tempArray=[];
 			  for(let j=0; j<=i; j++){
@@ -124,7 +131,7 @@ function numbers(operation){
 			  for(let k=0;k<arrayLength;k++){
 				let temp2=tempArray.pop();
 				z.unshift(temp2);
-			  }			  
+			  }
 		  }
 	  }
 	  for(let n=expression.length-1; n>=0;n--){
@@ -159,7 +166,7 @@ function numbers(operation){
  	document.getElementById('addition').innerHTML=displayExpression;
   }
 
-  
+
   if (operation=='0' && numlength<=9 && ansNum==false){
     expression+='0';
     displayExpression+='0';
@@ -186,7 +193,7 @@ function numbers(operation){
     displayExpression+='3';
     document.getElementById('addition').innerHTML=displayExpression;
     symbol=true;
-    numlength++;    
+    numlength++;
   }
   if (operation=='4'&& numlength<=9 && ansNum==false){
     expression+='4';
@@ -248,12 +255,23 @@ function AC(){
 	decimalPoint=true;
 	decimalNum=false;
 	numlength=1;
+  ansNum=false;
 }
+function commas(displayExpression){
+  let r=displayExpression.split('');
+  for(let i=displayExpression.length-1;i>=0;i--){
+    if(displayExpression[i]=='x'||displayExpression[i]=='/'||displayExpression[i]=='^'||displayExpression[i]=='-'||displayExpression[i]=='+'){
 
+    }
+  }
+
+
+}
 function equals(operation){
   let finalExpression=eval(expression);
   if (operation== '='){
-    if (finalExpression==Infinity){
+    if (finalExpression==Infinity||finalExpression==undefined){
+      console.log(finalExpression)
       document.getElementById('addition').innerHTML="U Hav Made A Grave Mistake";
     }
     else if(finalExpression>=1000000000){
@@ -264,22 +282,18 @@ function equals(operation){
     else if(finalExpression<=-1000000000){
 	  let exponent=finalExpression.toString().length-2;
 	  document.getElementById('addition').innerHTML=finalExpression/(10**(exponent))+'e'+exponent;
-	}		
+	}
     else{
       document.getElementById('addition').innerHTML=finalExpression.toLocaleString();
     }
 
   }
-    try {
-      finalExpression
-    }
-    catch(err) {
-      document.getElementById('addition').innerHTML="Error";
-    }
+
     ans=finalExpression;
     expression='';
     displayExpression='';
     finalExpression='';
+    ansNum=false;
+    symbol=false;
 
-    
 }
