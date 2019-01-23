@@ -1,5 +1,6 @@
 #addition{
   font-size: 32px;
+  color: white;
 }
 table {
   border-collapse: collapse;
@@ -13,22 +14,21 @@ table.center {
 td {
   width:100px;
   font-size:20px;
-  background-color: lightblue;
-  border-radius: 10px;
-
+  background-color: white;
+  border-radius: 20px;
 }
 
 tr {
   height:100px;
 }
 th {
-  border-top: 1px solid black;
-  border-right: 1px solid black;
-  border-left: 1px solid black;
+  border-top: 1px solid white;
+  border-right: 1px solid white;
+  border-left: 1px solid white;
 }
 td:hover{
   background-color: lightgreen;
 }
 #gradient {
-  background-image: linear-gradient(lightgreen, blue, lightblue);
+  background-color: black;
 }

@@ -105,12 +105,6 @@ function numbers(operation){
 	  expression=r.join('');
 	  displayExpression=z.join('')
 	  document.getElementById('addition').innerHTML=displayExpression;
-	  //if(temp=='*'||temp.length-1=='-'||temp== '/' ||temp=='%'||temp=='**'||temp=='+'){
-		//symbol=true;
-	  //}
-	  //if(displayExpression[displayExpression.length-1]=='x'||displayExpression[displayExpression.length-1]=='-'||displayExpression[displayExpression.length-1]== '/' ||displayExpression[displayExpression.length-1]=='%'||displayExpression[displayExpression.length-1]=='^'||displayExpression[displayExpression.length-1]=='+'){
-		//symbol=false;
-	  //}
   }
   if (operation=="negation"){
 	  let z=displayExpression.split('');
@@ -237,7 +231,7 @@ function numbers(operation){
     symbol=true;
     numlength++;
   }
-  if (operation=='ans' && ans != ''){
+  if (operation=='ans' && ans != '' && symbol==false){
   expression+='ans';
   displayExpression+='ans';
   document.getElementById('addition').innerHTML=displayExpression;
